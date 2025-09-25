@@ -1,26 +1,13 @@
-import Header from './Header';
-import Nav from './Nav';
-import Main from './Main';
-import Footer from './Footer';
-import './App.css';
-
+import Homepage from './Components/Homepage';
+import Footer from './Footer'; 
 
 function App() {
   return (
     <>
-       <header className="app-header">
-        <Header />
-        <Nav />
-      </header>
-      <Main>
-        {/* your main content here */}
-      </Main>
-      <Footer>
-        {/* your footer content here */}
-      </Footer>
+      <Homepage />
+      <Footer />
     </>
   );
 }
-
 
 export default App;
