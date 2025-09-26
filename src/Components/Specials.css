@@ -1,0 +1,95 @@
+.specials-container {
+  padding: 3rem 4rem;
+  background-color: #faefea;
+  font-family: 'Karla', sans-serif;
+  color: #333;
+}
+
+.specials-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.specials-container h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.btn-menu {
+  background-color: #f4c212;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Karla', sans-serif;
+}
+
+.btn-menu:hover {
+  background-color: #d6b011;
+}
+
+.cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.special-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  width: 250px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.special-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.special-text {
+  padding: 1rem 1.3rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.special-text h3 {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  color: #f4c212;
+  font-weight: 900;
+}
+
+.special-text p {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  color: #515151;
+  margin-bottom: 1rem;
+}
+
+.order-link {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+.order-link:hover {
+  color: #f4c212;
+  font-weight: 700;
+}

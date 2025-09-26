@@ -1,0 +1,43 @@
+.call-to-action {
+  display: flex;
+  justify-content: space-between;
+  background-color: #4a6055;
+  color: white;
+  padding: 3rem 4rem;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.call-to-action .left {
+  max-width: 520px;
+}
+
+.highlight-yellow {
+  color: #f4c212;
+}
+
+.call-to-action p {
+  margin: 1rem 0 2rem;
+  line-height: 1.5;
+}
+
+.btn-reserve {
+  background-color: #f4c212;
+  border: none;
+  color: black;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Karla', sans-serif;
+}
+
+.btn-reserve:hover {
+  background-color: #d6b011;
+}
+
+.hero-image {
+  border-radius: 12px;
+  max-width: 400px;
+  height: auto;
+}
