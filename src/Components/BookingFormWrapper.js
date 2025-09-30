@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom";
 import BookingForm from "./BookingForm";
 import fetchAPI from "../fetchAPI";
 
-// fetchAPI returns available times for a given date
-// see fetchAPI.js below
-
 function BookingFormWrapper() {
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [availableTimes, setAvailableTimes] = useState([]);
@@ -15,19 +12,16 @@ function BookingFormWrapper() {
   const navigate = useNavigate();
 
   useEffect(() => {
-  const times = fetchAPI(date);
-  setAvailableTimes(times);
-
-  // If the current time isn't in the new times, set it to the first available
-  if (times.length > 0) {
-    setTime(prevTime => times.includes(prevTime) ? prevTime : times[0]);
-  } else {
-    setTime("");
-  }
-}, [date]);
+    const times = fetchAPI(date);
+    setAvailableTimes(times);
+    if (times.length > 0) {
+      setTime(times[0]);
+    } else {
+      setTime("");
+    }
+  }, [date]); // ONLY date, not time
 
   function submitAPI(formData) {
-    // Simulate API call, always returns true for demo
     return true;
   }
 
@@ -36,7 +30,6 @@ function BookingFormWrapper() {
     if (success) {
       navigate("/confirmed");
     }
-    // You may handle error case here
   };
 
   return (

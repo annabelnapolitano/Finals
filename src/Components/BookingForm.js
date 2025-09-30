@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function BookingForm({
   date,
@@ -10,12 +10,28 @@ function BookingForm({
   occasion,
   setOccasion,
   availableTimes,
-  submitForm // receive this as a prop!
+  submitForm
 }) {
+  // Track form validity
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  // Set minimum date to today
+  const minDate = new Date().toISOString().split("T")[0];
+
+  useEffect(() => {
+    // Validation logic
+    const isDateValid = date && date >= minDate;
+    const isTimeValid = time && availableTimes.includes(time);
+    const isGuestsValid = Number(guests) >= 1 && Number(guests) <= 20;
+    const isOccasionValid = occasion === "Birthday" || occasion === "Anniversary";
+    setIsFormValid(isDateValid && isTimeValid && isGuestsValid && isOccasionValid);
+  }, [date, time, guests, occasion, availableTimes]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Pass the form data to parent for submission
-    submitForm({ date, time, guests, occasion });
+    if (isFormValid) {
+      submitForm({ date, time, guests, occasion });
+    }
   };
 
   const handleGuestsChange = (e) => {
@@ -30,6 +46,7 @@ function BookingForm({
       aria-label="Reservation form"
       style={{ display: 'grid', maxWidth: '200px', gap: '20px' }}
       onSubmit={handleSubmit}
+      autoComplete="off"
     >
       <label htmlFor="res-date">Choose date</label>
       <input
@@ -37,6 +54,7 @@ function BookingForm({
         id="res-date"
         value={date}
         required
+        min={minDate}
         aria-required="true"
         onChange={e => onDateChange(e.target.value)}
       />
@@ -49,11 +67,15 @@ function BookingForm({
         aria-required="true"
         onChange={e => setTime(e.target.value)}
       >
-        {availableTimes.map(t => (
-          <option key={t} value={t}>
-            {t}
-          </option>
-        ))}
+        {availableTimes.length === 0 ? (
+          <option value="">No times available</option>
+        ) : (
+          availableTimes.map(t => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))
+        )}
       </select>
 
       <label htmlFor="guests">Number of guests</label>
@@ -83,7 +105,7 @@ function BookingForm({
         <option value="Anniversary">Anniversary</option>
       </select>
 
-      <input type="submit" value="Make Your reservation" />
+      <input type="submit" value="Make Your reservation" disabled={!isFormValid} />
     </form>
   );
 }
